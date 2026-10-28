@@ -184,3 +184,4 @@ jupyter nbconvert --to notebook --execute notebooks/main.ipynb --inplace
 ## 9. Suggested Resume Bullet
 
 > *Audited and refactored a food delivery time ML pipeline in scikit-learn; resolved ordinal encoding defects and leakage vectors, established naive baseline benchmarks, and conducted rigorous diagnostic evaluations of Linear and Logistic Regression workflows across regression and classification tasks.*
+
