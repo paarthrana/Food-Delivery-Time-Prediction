@@ -88,22 +88,24 @@ Evaluated on the held-out test split ($N=40$):
 | Metric | Linear Regression (OLS) | Naive Training Mean Baseline | Naive Training Median Baseline |
 | :--- | :---: | :---: | :---: |
 | **Mean Absolute Error (MAE)** | **$27.18$ min** | **$25.53$ min** | **$25.38$ min** |
-| **Root Mean Squared Error (RMSE)** | **$31.91$ min** | **$29.83$ min** | **$29.87$ min** |
-| **Mean Squared Error (MSE)** | $1018.38$ | $889.87$ | $892.48$ |
+| **Root Mean Squared Error (RMSE)** | **$31.91$ min** | **$30.43$ min** | **$30.55$ min** |
+| **Mean Squared Error (MSE)** | $1018.38$ | $925.97$ | $933.60$ |
 | **Coefficient of Determination ($R^2$)** | **$-0.1011$** | **$-0.0012$** | — |
 
-*Note on Negative $R^2$*: In out-of-sample evaluation, $R^2$ measures relative variance explained compared to the training mean. An $R^2$ of $-0.1011$ indicates the fitted linear model has higher residual error than simply predicting the training mean ($71.39$ minutes).
+*Note on Negative $R^2$*: In out-of-sample evaluation, $R^2$ measures relative variance explained compared to the training mean. An $R^2$ of $-0.1011$ indicates the fitted linear model has higher residual error than simply predicting the training mean ($70.70$ minutes).
 
 ### Binary Classification (Fast vs. Delayed)
 Evaluated on the held-out test split ($N=40$, 20 Fast, 20 Delayed; Positive Class = `Delayed`):
 
-| Evaluation Metric | Logistic Regression | Random Guessing Baseline |
+| Evaluation Metric | Logistic Regression | Balanced Random Reference Value |
 | :--- | :---: | :---: |
-| **Accuracy** | **$40.00\%$** ($16 / 40$) | $50.00\%$ ($20 / 40$) |
-| **Precision (`Delayed`)** | **$38.89\%$** ($7 / 18$) | $50.00\%$ |
-| **Recall (`Delayed`)** | **$35.00\%$** ($7 / 20$) | $50.00\%$ |
-| **F1-Score (`Delayed`)** | **$0.3684$** | $0.5000$ |
-| **ROC-AUC Score** | **$0.4075$** | $0.5000$ |
+| **Accuracy** | **$40.00\%$** ($16 / 40$) | $50.00\%$ (Equal-chance reference) |
+| **Precision (`Delayed`)** | **$38.89\%$** ($7 / 18$) | — |
+| **Recall (`Delayed`)** | **$35.00\%$** ($7 / 20$) | — |
+| **F1-Score (`Delayed`)** | **$0.3684$** | — |
+| **ROC-AUC Score** | **$0.4075$** | $0.5000$ (Random ranking reference) |
+
+*Note on Classification Reference Values*: In a balanced binary evaluation ($20$ Fast, $20$ Delayed), an uninformative classifier assigning random chance rankings yields an expected accuracy of $50.00\%$ and an expected ROC-AUC of $0.5000$. Precision, Recall, and F1-score depend on specific operational decision thresholds and are not presented as pseudo-baselines without an explicit prediction policy.
 
 #### Test Set Confusion Matrix
 ```
